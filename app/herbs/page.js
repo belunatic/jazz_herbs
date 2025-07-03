@@ -5,71 +5,74 @@ const AddHerb = () => {
 	const [inputFields, setInputFields] = useState([{ value: "" }]);
 	const [inputName, setInputName] = useState("");
 	const [inputAltName, setInputAltName] = useState("");
+	const categories = ["a", "b", "e", "l"];
 
 	// Function to add a new input field
 	const handleAddFields = () => {
 		setInputFields([...inputFields, { value: "" }]);
 	};
 
-	// Function to remove an input field by index
-	const handleRemoveFields = (index) => {
-		const newInputFields = [...inputFields];
-		newInputFields.splice(index, 1);
-		setInputFields(newInputFields);
+	const renderCategoryCheckboxes = (name, arrayValue) => {
+		return (
+			<div>
+				<label>Categories:</label>
+				{arrayValue.map((item, idx) => (
+					<div key={idx}>
+						<input
+							type="checkbox"
+							id={`${name}_${item}`}
+							name={`${name}`}
+							value={item}
+						/>
+						<label htmlFor={`${name}_${item}`}>{item}</label>
+					</div>
+				))}
+			</div>
+		);
 	};
 
-	// Function to update the value of an input field
-	const handleValueChange = (index, event) => {
-		const values = [...inputFields];
-		values[index].value = event.target.value;
-		setInputFields(values);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const formData = {
+			name: e.target.herb_name.value,
+			altName: e.target.alt_name.value,
+			features: inputFields.map((field) => field.value),
+			notes: e.target.notes.value,
+			categories: Array.from(e.target.categories)
+				.filter((input) => input.checked)
+				.map((input) => input.value),
+		};
+		console.log(formData);
+		// You can add your submit logic here (e.g., API call)
 	};
+
 	return (
-		<div>
-			<div className="bg-main">
+		<form onSubmit={handleSubmit} className="w-full max-w-lg bg-main text-text">
+			<div className="">
 				<label htmlFor="herb_name">Name</label>
 				<input
 					type="text"
 					name="herb_name"
 					id="herb_name"
 					placeholder="Ginger"
-					required></input>
+					required
+				/>
 			</div>
 			<div>
 				<label htmlFor="alt_name">Alternative Name</label>
-				<input
-					type="text"
-					name="alt_name"
-					id="herb_name"
-					placeholder="Ginger"></input>
+				<input type="text" name="alt_name" id="alt_name" placeholder="Ginger" />
+			</div>
+			<div>
+				<div> {renderCategoryCheckboxes("category", categories)}</div>
 			</div>
 
-			{inputFields.map((inputField, index) => (
-				<div className="input-container" key={index}>
-					<input
-						type="text"
-						placeholder="Feature"
-						value={inputField.value}
-						onChange={(e) => handleValueChange(index, e)}
-					/>
-
-					<button
-						className="delete-btn"
-						onClick={() => handleRemoveFields(index)}>
-						<span className="material-symbols-outlined delete-icon">
-							delete
-						</span>
-					</button>
-				</div>
-			))}
-			<button className="add-btn" onClick={handleAddFields}>
-				<span className="material-symbols-outlined add-icon">add</span>Add Field
-			</button>
 			<div>
 				<label htmlFor="notes"> Notes</label>
 				<textarea id="notes" name="notes"></textarea>
 			</div>
-		</div>
+
+			<button type="submit">Submit</button>
+		</form>
 	);
 };
 
