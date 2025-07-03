@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+@theme {
+	--color-main: var(--main-background);
+	--color-container: var(--container-background);
+	--color-border: var(--border);
+	--color-text: var(--text-color);
+	--color-button-primary: var(--button-primary);
+	--color-button-secondary: var(--button-secondary);
+	--color-button-black: var(--button-black);
+	--color-button-warning: var(--button-warning);
+	--color-error: var(--color-error);
+	--color-error-content: var(--color-error-content);
+	--radius-selector: var(--radius-selector);
+	--radius-field: var(--radius-field);
+	--radius-box: var(--radius-box);
+	--size-selector: var(--size-selector);
+	--size-field: var(--size-field);
+	--border-size: var(--border);
+	--depth: var(--depth);
+	--noise: var(--noise);
+}
+
+:root {
+	--main-background: oklch(100% 0 0);
+	--container-background: oklch(98% 0 0);
+	--border: oklch(95% 0 0);
+	--text-color: oklch(14% 0.005 285.823);
+	--button-primary: oklch(45% 0.24 277.023);
+	--button-secondary: oklch(65% 0.241 354.308);
+	--button-black: oklch(14% 0.005 285.823);
+	--button-warning: oklch(76% 0.177 163.223);
+	--color-error: oklch(71% 0.194 13.428);
+	--color-error-content: oklch(27% 0.105 12.094);
+	--radius-selector: 0.5rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.5rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 1;
+	--noise: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--main-background: oklch(12% 0.042 264.695);
+		--container-background: oklch(20% 0.042 265.755);
+		--border: oklch(27% 0.041 260.031);
+		--text-color: oklch(70% 0.04 256.788);
+		--button-primary: oklch(67% 0.182 276.935);
+		--button-secondary: oklch(74% 0.238 322.16);
+		--button-black: oklch(27% 0.041 260.031);
+		--button-warning: oklch(72% 0.219 149.579);
+		--color-error: oklch(63% 0.237 25.331);
+		--color-error-content: oklch(97% 0.013 17.38);
+		--radius-selector: 0.5rem;
+		--radius-field: 0.25rem;
+		--radius-box: 0.5rem;
+		--size-selector: 0.25rem;
+		--size-field: 0.25rem;
+		--border: 1px;
+		--depth: 1;
+		--noise: 1;
+	}
+}
