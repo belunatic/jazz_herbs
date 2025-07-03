@@ -26,7 +26,7 @@ const AddHerb = () => {
 	};
 	return (
 		<div>
-			<div>
+			<div className="bg-main">
 				<label htmlFor="herb_name">Name</label>
 				<input
 					type="text"
