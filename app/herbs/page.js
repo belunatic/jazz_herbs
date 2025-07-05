@@ -5,12 +5,12 @@ import {
 	herbalEnergetics,
 	herbalConstituents,
 } from "@/lib/constants";
+import { createHerb } from "@/pages/api/herbs";
 
 const AddHerb = () => {
 	const [inputFields, setInputFields] = useState([{ value: "" }]);
 	const [inputName, setInputName] = useState("");
 	const [inputAltName, setInputAltName] = useState("");
-	const categories = ["a", "b", "e", "l"];
 
 	// Function to add a new input field
 	const handleAddFields = () => {
@@ -60,7 +60,6 @@ const AddHerb = () => {
 
 		for (let i = 0; i < formElements.length; i++) {
 			const element = formElements[i];
-			console.log(element);
 			if (!element.name) continue;
 
 			if (element.type === "checkbox") {
@@ -77,6 +76,7 @@ const AddHerb = () => {
 
 		console.log(formData);
 		// You can add your submit logic here (e.g., API call)
+		createHerb(formData);
 	};
 
 	return (
