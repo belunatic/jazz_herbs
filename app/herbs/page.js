@@ -11,7 +11,8 @@ const AddHerb = () => {
 	const handleAddFields = () => {
 		setInputFields([...inputFields, { value: "" }]);
 	};
-
+	//Herb Action (constituents)
+	//Energetics
 	const renderCategoryCheckboxes = (name, arrayValue) => {
 		return (
 			<div>
