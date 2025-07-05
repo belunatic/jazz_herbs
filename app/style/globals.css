@@ -5,6 +5,7 @@
 	--color-container: var(--container-background);
 	--color-border: var(--border);
 	--color-text: var(--text-color);
+	--color-text-input: var(--text-color);
 	--color-button-primary: var(--button-primary);
 	--color-button-secondary: var(--button-secondary);
 	--color-button-black: var(--button-black);
@@ -27,6 +28,7 @@
 	--container-background: oklch(98% 0 0);
 	--border: oklch(95% 0 0);
 	--text-color: oklch(14% 0.005 285.823);
+	--text-input: oklch(20% 0.042 265.755);
 	--button-primary: oklch(45% 0.24 277.023);
 	--button-secondary: oklch(65% 0.241 354.308);
 	--button-black: oklch(14% 0.005 285.823);
@@ -50,6 +52,7 @@
 		--container-background: oklch(20% 0.042 265.755);
 		--border: oklch(27% 0.041 260.031);
 		--text-color: oklch(70% 0.04 256.788);
+		--text-input: oklch(96% 0.001 286.375);
 		--button-primary: oklch(67% 0.182 276.935);
 		--button-secondary: oklch(74% 0.238 322.16);
 		--button-black: oklch(27% 0.041 260.031);
