@@ -64,3 +64,15 @@
 		--noise: 1;
 	}
 }
+
+.wrapper {
+	padding: 10px;
+	margin: 10px auto;
+}
+
+@media (max-width: 768px) {
+	.wrapper {
+		padding: 5px;
+		margin: 5px auto;
+	}
+}
