@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
-import { herbalActions } from "@/lib/constants";
+import {
+	herbalActions,
+	herbalEnergetics,
+	herbalConstituents,
+} from "@/lib/constants";
 
 const AddHerb = () => {
 	const [inputFields, setInputFields] = useState([{ value: "" }]);
@@ -14,7 +18,7 @@ const AddHerb = () => {
 	};
 	//Herb Action (constituents)
 	//Energetics
-	const renderCategoryCheckboxes = (label, attributeName, arrayValue) => {
+	const renderCheckboxes = (label, attributeName, arrayValue) => {
 		const chunkSize = 10;
 		const checkboxGroups = [];
 
@@ -41,7 +45,9 @@ const AddHerb = () => {
 
 		return (
 			<div>
-				<label className="block mb-2 text-sm font-medium">{label}:</label>
+				<label className="block text-text-input text-lg mb-2 font-semibold">
+					{label}:
+				</label>
 				<div className="flex flex-wrap space-x-4">{checkboxGroups}</div>
 			</div>
 		);
@@ -49,15 +55,26 @@ const AddHerb = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const formData = {
-			name: e.target.herb_name.value,
-			altName: e.target.alt_name.value,
-			features: inputFields.map((field) => field.value),
-			notes: e.target.notes.value,
-			categories: Array.from(e.target.categories)
-				.filter((input) => input.checked)
-				.map((input) => input.value),
-		};
+		const formData = {};
+		const formElements = e.target.elements;
+
+		for (let i = 0; i < formElements.length; i++) {
+			const element = formElements[i];
+			console.log(element);
+			if (!element.name) continue;
+
+			if (element.type === "checkbox") {
+				if (!formData[element.name]) formData[element.name] = [];
+				if (element.checked) formData[element.name].push(element.value);
+			} else if (element.type === "radio") {
+				if (element.checked) formData[element.name] = element.value;
+			} else if (element.type === "file") {
+				formData[element.name] = element.files;
+			} else {
+				formData[element.name] = element.value;
+			}
+		}
+
 		console.log(formData);
 		// You can add your submit logic here (e.g., API call)
 	};
@@ -68,7 +85,9 @@ const AddHerb = () => {
 				onSubmit={handleSubmit}
 				className="max-w-lg mx-auto bg-container p-4 m-2">
 				<div className="mb-5">
-					<label className="block mb-2 text-sm font-medium" htmlFor="herb_name">
+					<label
+						className="block text-text-input text-lg mb-2 font-semibold"
+						htmlFor="herb_name">
 						Name
 					</label>
 					<input
@@ -81,7 +100,9 @@ const AddHerb = () => {
 					/>
 				</div>
 				<div className="mb-5">
-					<label className="block mb-2 text-sm font-medium" htmlFor="alt_name">
+					<label
+						className="block text-text-input text-lg mb-2 font-semibold"
+						htmlFor="alt_name">
 						Alternative Name
 					</label>
 					<input
@@ -95,16 +116,34 @@ const AddHerb = () => {
 				<div className="mb-5">
 					<div className="mb-5">
 						{" "}
-						{renderCategoryCheckboxes(
-							"Herbal Actions",
-							"herbal_action",
-							herbalActions
+						{renderCheckboxes("Herbal Actions", "herbal_action", herbalActions)}
+					</div>
+				</div>
+				<div className="mb-5">
+					<div className="mb-5">
+						{" "}
+						{renderCheckboxes(
+							"Herbal Energetics",
+							"herbal_energetics",
+							herbalEnergetics
+						)}
+					</div>
+				</div>
+				<div className="mb-5">
+					<div className="mb-5">
+						{" "}
+						{renderCheckboxes(
+							"herbal Constituents",
+							"herbal_constituents",
+							herbalConstituents
 						)}
 					</div>
 				</div>
 
 				<div className="mb-5">
-					<label className="block mb-2 text-sm font-medium" htmlFor="notes">
+					<label
+						className="block text-text-input text-lg mb-2 font-semibold"
+						htmlFor="notes">
 						{" "}
 						Notes
 					</label>
