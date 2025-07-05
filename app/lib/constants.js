@@ -131,3 +131,46 @@ export const herbalActions = [
 		summary: "Promotes tissue healing, internally and topically.",
 	},
 ];
+
+export const herbalEnergetics = [
+	{
+		name: "Warming/Hot",
+		description:
+			"Increase physiological activity and circulation; commonly used to stimulate digestion or metabolism. Examples: red pepper, cinnamon.",
+	},
+	{
+		name: "Cooling/Cold",
+		description:
+			"Reduce excess activity and calm overheated states; often applied to inflammation or anxiety. Examples: lavender, marshmallow root.",
+	},
+	{
+		name: "Drying",
+		description:
+			"Help reduce excess fluid or mucus in the body; beneficial for damp conditions. Examples: dandelion, cinnamon.",
+	},
+	{
+		name: "Moistening/Damp",
+		description:
+			"Restore hydration and soothe dry tissues; useful for dry skin, lungs, or mucous membranes. Examples: marshmallow root, sage.",
+	},
+	{
+		name: "Toning/Tightening",
+		description:
+			"Strengthen and firm tissues, especially mucous membranes and skin; often astringent. Examples: oak, rosehip.",
+	},
+	{
+		name: "Relaxing/Lax",
+		description:
+			"Ease tension in the body and mind; beneficial for muscle spasms, stress, or insomnia. Examples: kava root, skullcap.",
+	},
+];
+
+export const herbalConstituents = [
+	{ name: "Carbohydrates", description: "" },
+	{ name: "Lipids", description: "" },
+	{ name: "Amino Acid Derivatives", description: "" },
+	{ name: "Phenolic Compounds", description: "" },
+	{ name: "Terpenes", description: "" },
+	{ name: "Steroids", description: "" },
+	{ name: "Alkaloids", description: "" },
+];
