@@ -9,6 +9,7 @@
 	--color-button-secondary: var(--button-secondary);
 	--color-button-black: var(--button-black);
 	--color-button-warning: var(--button-warning);
+	--color-button-success: var(--button-success);
 	--color-error: var(--color-error);
 	--color-error-content: var(--color-error-content);
 	--radius-selector: var(--radius-selector);
@@ -29,7 +30,8 @@
 	--button-primary: oklch(45% 0.24 277.023);
 	--button-secondary: oklch(65% 0.241 354.308);
 	--button-black: oklch(14% 0.005 285.823);
-	--button-warning: oklch(76% 0.177 163.223);
+	--button-warning: oklch(71% 0.194 13.428);
+	--button-success: oklch(76% 0.177 163.223);
 	--color-error: oklch(71% 0.194 13.428);
 	--color-error-content: oklch(27% 0.105 12.094);
 	--radius-selector: 0.5rem;
@@ -51,7 +53,8 @@
 		--button-primary: oklch(67% 0.182 276.935);
 		--button-secondary: oklch(74% 0.238 322.16);
 		--button-black: oklch(27% 0.041 260.031);
-		--button-warning: oklch(72% 0.219 149.579);
+		--button-warning: oklch(63% 0.237 25.331);
+		--button-success: oklch(72% 0.219 149.579);
 		--color-error: oklch(63% 0.237 25.331);
 		--color-error-content: oklch(97% 0.013 17.38);
 		--radius-selector: 0.5rem;
@@ -68,6 +71,7 @@
 .wrapper {
 	padding: 10px;
 	margin: 10px auto;
+	background: var(--main-background);
 }
 
 @media (max-width: 768px) {

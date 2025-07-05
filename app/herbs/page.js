@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { herbalActions } from "@/lib/constants";
 
 const AddHerb = () => {
 	const [inputFields, setInputFields] = useState([{ value: "" }]);
@@ -13,21 +14,35 @@ const AddHerb = () => {
 	};
 	//Herb Action (constituents)
 	//Energetics
-	const renderCategoryCheckboxes = (name, arrayValue) => {
+	const renderCategoryCheckboxes = (label, attributeName, arrayValue) => {
+		const chunkSize = 10;
+		const checkboxGroups = [];
+
+		for (let i = 0; i < arrayValue.length; i += chunkSize) {
+			const chunk = arrayValue.slice(i, i + chunkSize);
+			checkboxGroups.push(
+				<div key={i} className="mb-4">
+					{chunk.map((item, idx) => (
+						<div key={`${i}-${idx}`} className="flex gap-4">
+							<input
+								type="checkbox"
+								id={`${attributeName}_${item.name}`}
+								name={`${attributeName}`}
+								value={item.name}
+							/>
+							<label htmlFor={`${attributeName}_${item.name}`}>
+								{item.name}
+							</label>
+						</div>
+					))}
+				</div>
+			);
+		}
+
 		return (
 			<div>
-				<label>Categories:</label>
-				{arrayValue.map((item, idx) => (
-					<div key={idx}>
-						<input
-							type="checkbox"
-							id={`${name}_${item}`}
-							name={`${name}`}
-							value={item}
-						/>
-						<label htmlFor={`${name}_${item}`}>{item}</label>
-					</div>
-				))}
+				<label className="block mb-2 text-sm font-medium">{label}:</label>
+				<div className="flex flex-wrap space-x-4">{checkboxGroups}</div>
 			</div>
 		);
 	};
@@ -48,32 +63,62 @@ const AddHerb = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="w-full max-w-lg bg-main text-text">
-			<div className="">
-				<label htmlFor="herb_name">Name</label>
-				<input
-					type="text"
-					name="herb_name"
-					id="herb_name"
-					placeholder="Ginger"
-					required
-				/>
-			</div>
-			<div>
-				<label htmlFor="alt_name">Alternative Name</label>
-				<input type="text" name="alt_name" id="alt_name" placeholder="Ginger" />
-			</div>
-			<div>
-				<div> {renderCategoryCheckboxes("category", categories)}</div>
-			</div>
+		<div className="wrapper bg-main text-text">
+			<form
+				onSubmit={handleSubmit}
+				className="max-w-lg mx-auto bg-container p-4 m-2">
+				<div className="mb-5">
+					<label className="block mb-2 text-sm font-medium" htmlFor="herb_name">
+						Name
+					</label>
+					<input
+						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
+						type="text"
+						name="herb_name"
+						id="herb_name"
+						placeholder="Ginger"
+						required
+					/>
+				</div>
+				<div className="mb-5">
+					<label className="block mb-2 text-sm font-medium" htmlFor="alt_name">
+						Alternative Name
+					</label>
+					<input
+						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
+						type="text"
+						name="alt_name"
+						id="alt_name"
+						placeholder="Ginger"
+					/>
+				</div>
+				<div className="mb-5">
+					<div className="mb-5">
+						{" "}
+						{renderCategoryCheckboxes(
+							"Herbal Actions",
+							"herbal_action",
+							herbalActions
+						)}
+					</div>
+				</div>
 
-			<div>
-				<label htmlFor="notes"> Notes</label>
-				<textarea id="notes" name="notes"></textarea>
-			</div>
+				<div className="mb-5">
+					<label className="block mb-2 text-sm font-medium" htmlFor="notes">
+						{" "}
+						Notes
+					</label>
+					<textarea
+						id="notes"
+						name="notes"
+						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"></textarea>
+				</div>
 
-			<button type="submit">Submit</button>
-		</form>
+				<button type="submit" className="bg-button-success text-white p-2">
+					Submit
+				</button>
+			</form>
+		</div>
 	);
 };
 
