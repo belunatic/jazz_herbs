@@ -1,68 +1,71 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { account, ID } from "@/lib/appwrite";
+import {
+	loginWithGoogle,
+	getUser,
+	createUserSession,
+	logoutUser,
+} from "@/pages/api/auth";
+import { useSearchParams } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 const LoginPage = () => {
-	const [loggedInUser, setLoggedInUser] = useState(null);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [name, setName] = useState("");
+	//const [user, setUser] = useState(null);
 
-	const login = async (email, password) => {
-		const session = await account.createEmailPasswordSession(email, password);
-		setLoggedInUser(await account.get());
-	};
+	const { User } = useUser();
 
-	const register = async () => {
-		await account.create(ID.unique(), email, password, name);
-		login(email, password);
-	};
+	useEffect(() => {
+		const checkUser = async () => {
+			try {
+				const user = await getUser();
+				console.log(user);
 
-	const logout = async () => {
-		await account.deleteSession("current");
-		setLoggedInUser(null);
-	};
+				if (User) {
+					console.log(User);
+				} else {
+					//get the userId and secret
+					const params = new URLSearchParams(window.location.search);
+					const userId = params.get("userId");
+					const secret = params.get("secret");
 
-	if (loggedInUser) {
-		return (
-			<div>
-				<p>Logged in as {loggedInUser.name}</p>
-				<button type="button" onClick={logout}>
-					Logout
-				</button>
-			</div>
-		);
-	}
+					console.log(userId, secret);
+
+					//create a session
+					const userSession = await createUserSession(userId, secret);
+					console.log(userSession);
+					setUser(userSession.name);
+					// Clean up URL params after login
+					window.history.replaceState(
+						{},
+						document.title,
+						window.location.pathname
+					);
+				}
+			} catch (error) {
+				console.error("Session not found or failed:", error);
+				// Redirect to login or show error
+			}
+		};
+
+		checkUser();
+		console.log("hello");
+	}, []);
 
 	return (
-		<div>
-			<p>Not logged in</p>
-			<form>
-				<input
-					type="email"
-					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<input
-					type="text"
-					placeholder="Name"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
-				<button type="button" onClick={() => login(email, password)}>
-					Login
+		<div className="w-full h-[80vh] flex justify-center items-center">
+			{User ? (
+				<>
+					<p>Welcome, {User.name}!</p>
+					<button onClick={logoutUser()}>Logout</button>
+				</>
+			) : (
+				<button
+					className="cursor point board bg-main m-2 p-4 text-text cursor-pointer"
+					onClick={loginWithGoogle}>
+					Login with Google
 				</button>
-				<button type="button" onClick={register}>
-					Register
-				</button>
-			</form>
+			)}
 		</div>
 	);
 };
