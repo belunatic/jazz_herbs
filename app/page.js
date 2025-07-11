@@ -1,9 +1,48 @@
-import Image from "next/image";
+"use client";
+import { useEffect } from "react";
+import { getUser, createUserSession } from "./pages/api/auth";
+import { useUser } from "./context/UserContext";
 
 export default function Home() {
+	// retrieve the user info from Context
+	const { User, setUser } = useUser();
+
+	useEffect(() => {
+		const checkUser = async () => {
+			try {
+				//check  for current user
+				if (!User) {
+					//get the userId and secret
+					const params = new URLSearchParams(window.location.search);
+					const userId = params.get("userId");
+					const secret = params.get("secret");
+
+					console.log(userId, secret);
+
+					//create a session
+					const userSession = await createUserSession(userId, secret);
+					console.log(userSession);
+					setUser(userSession);
+					// Clean up URL params after login
+					window.history.replaceState(
+						{},
+						document.title,
+						window.location.pathname
+					);
+				}
+			} catch (error) {
+				console.error("Session not found or failed:", error);
+				// Redirect to login or show error
+			}
+		};
+
+		checkUser();
+		console.log("hello");
+	}, []);
+
 	return (
 		<div>
-			<h1>Hello world</h1>
+			<h1>Welcome {User.name}</h1>
 		</div>
 	);
 }
