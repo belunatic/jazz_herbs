@@ -83,7 +83,7 @@ const AddHerb = () => {
 		<div className="wrapper bg-main text-text">
 			<form
 				onSubmit={handleSubmit}
-				className="max-w-lg mx-auto bg-container p-4 m-2">
+				className="max-w-full mx-auto bg-container p-2 md:p-4 md:m-2">
 				<div className="mb-5">
 					<label
 						className="block text-text-input text-lg mb-2 font-semibold"
@@ -133,7 +133,7 @@ const AddHerb = () => {
 					<div className="mb-5">
 						{" "}
 						{renderCheckboxes(
-							"herbal Constituents",
+							"Herbal Constituents",
 							"herbal_constituents",
 							herbalConstituents
 						)}
