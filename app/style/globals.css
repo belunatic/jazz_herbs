@@ -21,6 +21,7 @@
 	--border-size: var(--border);
 	--depth: var(--depth);
 	--noise: var(--noise);
+	--color-nav: var(--nav-color);
 }
 
 :root {
@@ -44,6 +45,7 @@
 	--border: 1px;
 	--depth: 1;
 	--noise: 0;
+	--nav-color: oklch(94% 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,6 +70,7 @@
 		--border: 1px;
 		--depth: 1;
 		--noise: 1;
+		--nav-color: oklch(87% 0 0);
 	}
 }
 
