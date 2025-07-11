@@ -8,7 +8,7 @@ export const loginWithGoogle = async () => {
 		console.log("Hello me");
 		await account.createOAuth2Token(
 			OAuthProvider.Google,
-			`${baseUrl}/admin`, // your callback URL
+			`${baseUrl}/`, // your callback URL
 			`${baseUrl}/` // failure URL
 		);
 	} catch (error) {
