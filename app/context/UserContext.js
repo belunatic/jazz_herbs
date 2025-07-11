@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
 					setUser(loggedInUser);
 				}
 			} catch (err) {
-				console.log("An error occured", err);
+				console.log("An error occurred: ", err);
 			}
 
 			checkUser();
@@ -27,10 +27,17 @@ export const UserProvider = ({ children }) => {
 	}, []);
 
 	//logout a user
-	const handleLogout = async () => {};
+	const handleLogout = async () => {
+		try {
+			await logoutUser;
+			setUser(null);
+		} catch (err) {
+			console.log("An error occurred: ", err);
+		}
+	};
 
 	return (
-		<UserContext.Provider value={{ User, toggleUser }}>
+		<UserContext.Provider value={{ User, handleLogout }}>
 			{children}
 		</UserContext.Provider>
 	);
