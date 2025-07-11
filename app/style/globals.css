@@ -73,7 +73,7 @@
 
 .wrapper {
 	padding: 10px;
-	margin: 10px auto;
+	margin: 0 auto;
 	background: var(--main-background);
 }
 
