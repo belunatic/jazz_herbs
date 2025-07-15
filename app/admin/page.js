@@ -1,68 +1,32 @@
 "use client";
-import { useState } from "react";
-import { account, ID } from "@/lib/appwrite";
+
+import { loginWithGoogle } from "@/pages/api/auth";
+
+import { useUser } from "@/context/UserContext";
 
 const LoginPage = () => {
-	const [loggedInUser, setLoggedInUser] = useState(null);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [name, setName] = useState("");
+	//const [user, setUser] = useState(null);
 
-	const login = async (email, password) => {
-		const session = await account.createEmailPasswordSession(email, password);
-		setLoggedInUser(await account.get());
-	};
-
-	const register = async () => {
-		await account.create(ID.unique(), email, password, name);
-		login(email, password);
-	};
-
-	const logout = async () => {
-		await account.deleteSession("current");
-		setLoggedInUser(null);
-	};
-
-	if (loggedInUser) {
-		return (
-			<div>
-				<p>Logged in as {loggedInUser.name}</p>
-				<button type="button" onClick={logout}>
-					Logout
-				</button>
-			</div>
-		);
-	}
+	const { User, handleLogout } = useUser();
 
 	return (
-		<div>
-			<p>Not logged in</p>
-			<form>
-				<input
-					type="email"
-					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<input
-					type="text"
-					placeholder="Name"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
-				<button type="button" onClick={() => login(email, password)}>
-					Login
+		<div className="w-full h-[80vh] flex justify-center items-center">
+			{User ? (
+				<div className="flex flex-col gap-4">
+					<p className="text-text text-2xl mb-4 block">Hello, {User.name}!</p>
+					<button
+						className="cursor point board bg-main m-2 p-4 text-text cursor-pointer"
+						onClick={handleLogout}>
+						Logout
+					</button>
+				</div>
+			) : (
+				<button
+					className="cursor point board bg-main m-2 p-4 text-text cursor-pointer"
+					onClick={loginWithGoogle}>
+					Sign In with Google
 				</button>
-				<button type="button" onClick={register}>
-					Register
-				</button>
-			</form>
+			)}
 		</div>
 	);
 };

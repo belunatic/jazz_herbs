@@ -8,7 +8,7 @@ export const loginWithGoogle = async () => {
 		console.log("Hello me");
 		await account.createOAuth2Token(
 			OAuthProvider.Google,
-			`${baseUrl}/admin`, // your callback URL
+			`${baseUrl}/`, // your callback URL
 			`${baseUrl}/` // failure URL
 		);
 	} catch (error) {
@@ -40,7 +40,6 @@ export const createUserSession = async (userId, secret) => {
 
 		// Get the user data
 		const user = await account.get();
-		console.log("this is the user from func:  ", user);
 		// User is now authenticated!
 		return user;
 	} catch (error) {
