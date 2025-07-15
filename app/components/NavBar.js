@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
+import { useUser } from "@/context/UserContext";
 
 const NavBar = () => {
+	const { User, handleLogout } = useUser();
 	return (
 		<div>
 			<nav className=" shadow-md py-4 bg-nav">
@@ -12,9 +15,15 @@ const NavBar = () => {
 						alt="Jazz Herbs Logo"
 					/>
 					<div>
-						<button className="bg-button-primary text-white px-4 py-2 rounded cursor-pointer hover:bg-green-800 transition duration-300">
-							Login
-						</button>
+						{User ? (
+							<button
+								onClick={handleLogout}
+								className="bg-button-primary text-white px-4 py-2 rounded cursor-pointer hover:bg-green-800 transition duration-300">
+								Logout
+							</button>
+						) : (
+							""
+						)}
 					</div>
 				</div>
 			</nav>

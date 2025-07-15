@@ -5,12 +5,14 @@ import { useUser } from "./context/UserContext";
 
 export default function Home() {
 	// retrieve the user info from Context
-	const { User, setUser } = useUser();
+	const { User, setUser, sessionOn } = useUser();
 
 	useEffect(() => {
 		const checkUser = async () => {
 			try {
 				//check  for current user
+				//const currentUser = await getUser();
+				console.log("info for the :   ", User);
 				if (!User) {
 					//get the userId and secret
 					const params = new URLSearchParams(window.location.search);
@@ -18,17 +20,18 @@ export default function Home() {
 					const secret = params.get("secret");
 
 					console.log(userId, secret);
-
-					//create a session
-					const userSession = await createUserSession(userId, secret);
-					console.log(userSession);
-					setUser(userSession);
-					// Clean up URL params after login
-					window.history.replaceState(
-						{},
-						document.title,
-						window.location.pathname
-					);
+					if (userId && secret) {
+						//create a session
+						const userSession = await createUserSession(userId, secret);
+						console.log(userSession);
+						setUser(userSession);
+						// Clean up URL params after login
+						window.history.replaceState(
+							{},
+							document.title,
+							window.location.pathname
+						);
+					}
 				}
 			} catch (error) {
 				console.error("Session not found or failed:", error);
@@ -42,7 +45,7 @@ export default function Home() {
 
 	return (
 		<div>
-			<h1>Welcome {User.name}</h1>
+			<h1>Welcome {User?.name ? `, ${User.name}` : ""}</h1>
 		</div>
 	);
 }

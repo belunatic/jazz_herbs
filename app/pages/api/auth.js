@@ -40,7 +40,6 @@ export const createUserSession = async (userId, secret) => {
 
 		// Get the user data
 		const user = await account.get();
-		console.log("this is the user from func:  ", user);
 		// User is now authenticated!
 		return user;
 	} catch (error) {
