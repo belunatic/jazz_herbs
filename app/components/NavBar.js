@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useUser } from "@/context/UserContext";
+import Link from "next/link";
 
 const NavBar = () => {
 	const { User, handleLogout } = useUser();
@@ -8,12 +9,14 @@ const NavBar = () => {
 		<div>
 			<nav className=" shadow-md py-4 bg-nav">
 				<div className="max-w-6xl mx-auto flex items-center justify-between px-4 cursor-pointer">
-					<Image
-						src="/images/JazzmynApothecaryLogo.png"
-						width={300}
-						height={49}
-						alt="Jazz Herbs Logo"
-					/>
+					<Link href="/">
+						<Image
+							src="/images/JazzmynApothecaryLogo.png"
+							width={300}
+							height={49}
+							alt="Jazz Herbs Logo"
+						/>
+					</Link>
 					<div>
 						{User ? (
 							<button

@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { getUser, createUserSession } from "./pages/api/auth";
 import { useUser } from "./context/UserContext";
+import AddHerbButton from "./components/AddHerbButton";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -46,6 +47,7 @@ export default function Home() {
 	return (
 		<div>
 			<h1>Welcome {User?.name ? `, ${User.name}` : ""}</h1>
+			{User ? <AddHerbButton linkTo="herbs" title="Add herb" /> : ""}
 		</div>
 	);
 }
