@@ -1,12 +1,15 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { getUser, logoutUser } from "@/pages/api/auth";
+import { useRouter } from "next/navigation";
 
 // Create context
 const UserContext = createContext();
 
 // Create a provider component
 export const UserProvider = ({ children }) => {
+	//create an instance of useRoute to redirect the logout user to the root
+	const router = useRouter();
 	const [User, setUser] = useState(null); // default User
 	//check for session
 
@@ -30,8 +33,9 @@ export const UserProvider = ({ children }) => {
 	//logout a user
 	const handleLogout = async () => {
 		try {
-			await logoutUser;
+			await logoutUser();
 			setUser(null);
+			router.push("/");
 		} catch (err) {
 			console.log("An error occurred: ", err);
 		}
