@@ -6,6 +6,7 @@ import {
 	herbalConstituents,
 } from "@/lib/constants";
 import { createHerb } from "@/pages/api/herbs";
+import Tooltip from "@/components/Tooltip";
 
 const AddHerb = () => {
 	const [inputFields, setInputFields] = useState([{ value: "" }]);
@@ -25,19 +26,21 @@ const AddHerb = () => {
 		for (let i = 0; i < arrayValue.length; i += chunkSize) {
 			const chunk = arrayValue.slice(i, i + chunkSize);
 			checkboxGroups.push(
-				<div key={i} className="mb-4">
+				<div key={i} className="w-full md:w-auto">
 					{chunk.map((item, idx) => (
-						<div key={`${i}-${idx}`} className="flex gap-4">
-							<input
-								type="checkbox"
-								id={`${attributeName}_${item.name}`}
-								name={`${attributeName}`}
-								value={item.name}
-							/>
-							<label htmlFor={`${attributeName}_${item.name}`}>
-								{item.name}
-							</label>
-						</div>
+						<Tooltip text={item.description} key={`${i}-${idx}`}>
+							<div key={`${i}-${idx}`} className="flex gap-4">
+								<input
+									type="checkbox"
+									id={`${attributeName}_${item.name}`}
+									name={`${attributeName}`}
+									value={item.name}
+								/>
+								<label htmlFor={`${attributeName}_${item.name}`}>
+									{item.name}
+								</label>
+							</div>
+						</Tooltip>
 					))}
 				</div>
 			);
