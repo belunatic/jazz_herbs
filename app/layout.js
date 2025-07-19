@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/style/globals.css";
 import NavBar from "./components/NavBar";
 import { UserProvider } from "./context/UserContext";
+import Footer from "./components/Footer";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -31,10 +32,7 @@ export default function RootLayout({ children }) {
 						{children}
 					</main>
 				</UserProvider>
-
-				<footer className="bg-gray-100 text-center py-4 text-sm text-gray-600">
-					© 2025 Jazz Herbs. All rights reserved.
-				</footer>
+				<Footer />
 			</body>
 		</html>
 	);
