@@ -11,6 +11,7 @@
 	--color-button-black: var(--button-black);
 	--color-button-warning: var(--button-warning);
 	--color-button-success: var(--button-success);
+	--color-button-hover: var(--button-hover);
 	--color-error: var(--color-error);
 	--color-error-content: var(--color-error-content);
 	--radius-selector: var(--radius-selector);
@@ -32,11 +33,12 @@
 	--border: oklch(95% 0 0);
 	--text-color: oklch(14% 0.005 285.823);
 	--text-input: oklch(20% 0.042 265.755);
-	--button-primary: oklch(45% 0.24 277.023);
+	--button-primary: oklch(88.311% 0.00417 285.961);
 	--button-secondary: oklch(65% 0.241 354.308);
 	--button-black: oklch(14% 0.005 285.823);
 	--button-warning: oklch(71% 0.194 13.428);
 	--button-success: oklch(76% 0.177 163.223);
+	--button-hover: oklch(83.96% 0.00284 285.842);
 	--color-error: oklch(71% 0.194 13.428);
 	--color-error-content: oklch(27% 0.105 12.094);
 	--radius-selector: 0.5rem;
@@ -57,13 +59,14 @@
 		--main-background: oklch(12% 0.042 264.695);
 		--container-background: oklch(20% 0.042 265.755);
 		--border: oklch(27% 0.041 260.031);
-		--text-color: oklch(70% 0.04 256.788);
+		--text-color: oklch(95.93% 0.007 247.9);
 		--text-input: oklch(96% 0.001 286.375);
-		--button-primary: oklch(67% 0.182 276.935);
+		--button-primary: oklch(70% 0.04 256.788);
 		--button-secondary: oklch(74% 0.238 322.16);
 		--button-black: oklch(27% 0.041 260.031);
 		--button-warning: oklch(63% 0.237 25.331);
 		--button-success: oklch(72% 0.219 149.579);
+		--button-hover: oklch(63.534% 0.0362 256.835);
 		--color-error: oklch(63% 0.237 25.331);
 		--color-error-content: oklch(97% 0.013 17.38);
 		--radius-selector: 0.5rem;

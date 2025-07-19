@@ -84,82 +84,86 @@ const AddHerb = () => {
 
 	return (
 		<div className="wrapper bg-main text-text">
-			<form
-				onSubmit={handleSubmit}
-				className="max-w-full mx-auto bg-container p-2 md:p-4 md:m-2">
-				<div className="mb-5">
-					<label
-						className="block text-text-input text-lg mb-2 font-semibold"
-						htmlFor="herb_name">
-						Name
-					</label>
-					<input
-						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
-						type="text"
-						name="herb_name"
-						id="herb_name"
-						placeholder="Ginger"
-						required
-					/>
-				</div>
-				<div className="mb-5">
-					<label
-						className="block text-text-input text-lg mb-2 font-semibold"
-						htmlFor="alt_name">
-						Alternative Name
-					</label>
-					<input
-						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
-						type="text"
-						name="alt_name"
-						id="alt_name"
-						placeholder="Ginger"
-					/>
-				</div>
-				<div className="mb-5">
+			<main className="max-w-screen-lg mx-auto bg-container">
+				<form onSubmit={handleSubmit} className=" p-4 md:p-8 md:m-2">
 					<div className="mb-5">
-						{" "}
-						{renderCheckboxes("Herbal Actions", "herbal_action", herbalActions)}
+						<label
+							className="block text-text-input text-lg mb-2 font-semibold"
+							htmlFor="herb_name">
+							Name
+						</label>
+						<input
+							className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
+							type="text"
+							name="herb_name"
+							id="herb_name"
+							placeholder="Ginger"
+							required
+						/>
 					</div>
-				</div>
-				<div className="mb-5">
 					<div className="mb-5">
-						{" "}
-						{renderCheckboxes(
-							"Herbal Energetics",
-							"herbal_energetics",
-							herbalEnergetics
-						)}
+						<label
+							className="block text-text-input text-lg mb-2 font-semibold"
+							htmlFor="alt_name">
+							Alternative Name
+						</label>
+						<input
+							className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
+							type="text"
+							name="alt_name"
+							id="alt_name"
+							placeholder="Ginger"
+						/>
 					</div>
-				</div>
-				<div className="mb-5">
 					<div className="mb-5">
-						{" "}
-						{renderCheckboxes(
-							"Herbal Constituents",
-							"herbal_constituents",
-							herbalConstituents
-						)}
+						<div className="mb-5">
+							{" "}
+							{renderCheckboxes(
+								"Herbal Actions",
+								"herbal_action",
+								herbalActions
+							)}
+						</div>
 					</div>
-				</div>
+					<div className="mb-5">
+						<div className="mb-5">
+							{" "}
+							{renderCheckboxes(
+								"Herbal Energetics",
+								"herbal_energetics",
+								herbalEnergetics
+							)}
+						</div>
+					</div>
+					<div className="mb-5">
+						<div className="mb-5">
+							{" "}
+							{renderCheckboxes(
+								"Herbal Constituents",
+								"herbal_constituents",
+								herbalConstituents
+							)}
+						</div>
+					</div>
 
-				<div className="mb-5">
-					<label
-						className="block text-text-input text-lg mb-2 font-semibold"
-						htmlFor="notes">
-						{" "}
-						Notes
-					</label>
-					<textarea
-						id="notes"
-						name="notes"
-						className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"></textarea>
-				</div>
+					<div className="mb-5">
+						<label
+							className="block text-text-input text-lg mb-2 font-semibold"
+							htmlFor="notes">
+							{" "}
+							Notes
+						</label>
+						<textarea
+							id="notes"
+							name="notes"
+							className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"></textarea>
+					</div>
 
-				<button type="submit" className="bg-button-success text-white p-2">
-					Submit
-				</button>
-			</form>
+					<button type="submit" className="bg-button-success text-white p-2">
+						Submit
+					</button>
+				</form>
+			</main>
 		</div>
 	);
 };

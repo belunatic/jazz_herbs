@@ -20,13 +20,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+		<html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+			<body className="antialiased flex flex-col min-h-screen bg-main">
 				<UserProvider>
-					<NavBar />
-					{children}
+					<header>
+						<NavBar />
+					</header>
+
+					<main className="flex-1 px-4 py-6 max-w-6xl mx-auto w-full">
+						{children}
+					</main>
 				</UserProvider>
+
+				<footer className="bg-gray-100 text-center py-4 text-sm text-gray-600">
+					© 2025 Jazz Herbs. All rights reserved.
+				</footer>
 			</body>
 		</html>
 	);
