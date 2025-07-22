@@ -21,17 +21,31 @@ export default function Home() {
 					const secret = params.get("secret");
 
 					console.log(userId, secret);
+
 					if (userId && secret) {
-						//create a session
-						const userSession = await createUserSession(userId, secret);
-						console.log(userSession);
-						setUser(userSession);
-						// Clean up URL params after login
-						window.history.replaceState(
-							{},
-							document.title,
-							window.location.pathname
-						);
+						//retrieve the allowed users
+						const allowedUsers = process.env.NEXT_PUBLIC_ALLOWED_USERS;
+
+						//login allowed user
+						if (!process.env.NEXT_PUBLIC_ALLOWED_USERS?.includes(userId)) {
+							alert("You do not have acess to this app.");
+							// Clean up URL params after login
+							window.history.replaceState(
+								{},
+								document.title,
+								window.location.pathname
+							);
+						} else {
+							//create a session
+							const userSession = await createUserSession(userId, secret);
+							setUser(userSession);
+							// Clean up URL params after login
+							window.history.replaceState(
+								{},
+								document.title,
+								window.location.pathname
+							);
+						}
 					}
 				}
 			} catch (error) {
