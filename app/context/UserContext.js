@@ -12,6 +12,9 @@ export const UserProvider = ({ children }) => {
 	const router = useRouter();
 	const [User, setUser] = useState(null); // default User
 
+	//show and hide notification bar
+	const [notify, setNotify] = useState(false);
+
 	//check for session
 	useEffect(() => {
 		//check to see if a user is logged in
@@ -41,7 +44,8 @@ export const UserProvider = ({ children }) => {
 	};
 
 	return (
-		<UserContext.Provider value={{ User, setUser, handleLogout }}>
+		<UserContext.Provider
+			value={{ User, setUser, handleLogout, notify, setNotify }}>
 			{children}
 		</UserContext.Provider>
 	);
