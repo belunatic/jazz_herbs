@@ -6,7 +6,7 @@ import AddHerbButton from "./components/AddHerbButton";
 
 export default function Home() {
 	// retrieve the user info from Context
-	const { User, setUser, sessionOn } = useUser();
+	const { User, setUser, sessionOn, setNotify } = useUser();
 
 	useEffect(() => {
 		const checkUser = async () => {
@@ -28,7 +28,8 @@ export default function Home() {
 
 						//login allowed user
 						if (!process.env.NEXT_PUBLIC_ALLOWED_USERS?.includes(userId)) {
-							alert("You do not have acess to this app.");
+							//show notification if user not allowed
+							setNotify(true);
 							// Clean up URL params after login
 							window.history.replaceState(
 								{},
