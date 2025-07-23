@@ -9,14 +9,9 @@ import { createHerb } from "@/pages/api/herbs";
 import Tooltip from "@/components/Tooltip";
 
 const AddHerb = () => {
-	const [inputFields, setInputFields] = useState([{ value: "" }]);
 	const [inputName, setInputName] = useState("");
 	const [inputAltName, setInputAltName] = useState("");
 
-	// Function to add a new input field
-	const handleAddFields = () => {
-		setInputFields([...inputFields, { value: "" }]);
-	};
 	//Herb Action (constituents)
 	//Energetics
 	const renderCheckboxes = (label, attributeName, arrayValue) => {
@@ -80,6 +75,8 @@ const AddHerb = () => {
 		console.log(formData);
 		// You can add your submit logic here (e.g., API call)
 		createHerb(formData);
+		//reset form
+		e.target.reset();
 	};
 
 	return (
@@ -159,7 +156,9 @@ const AddHerb = () => {
 							className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"></textarea>
 					</div>
 
-					<button type="submit" className="bg-button-success text-white p-2">
+					<button
+						type="submit"
+						className="bg-button-success cursor-pointer text-text hover:bg-button-hover rounded-lg p-2">
 						Submit
 					</button>
 				</form>
