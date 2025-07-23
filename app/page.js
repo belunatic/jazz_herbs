@@ -20,8 +20,6 @@ export default function Home() {
 					const userId = params.get("userId");
 					const secret = params.get("secret");
 
-					console.log(userId, secret);
-
 					if (userId && secret) {
 						//retrieve the allowed users
 						const allowedUsers = process.env.NEXT_PUBLIC_ALLOWED_USERS;
