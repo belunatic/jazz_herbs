@@ -11,14 +11,16 @@ export const UserProvider = ({ children }) => {
 	//create an instance of useRoute to redirect the logout user to the root
 	const router = useRouter();
 	const [User, setUser] = useState(null); // default User
-	//check for session
 
+	//show and hide notification bar
+	const [notify, setNotify] = useState(false);
+
+	//check for session
 	useEffect(() => {
 		//check to see if a user is logged in
 		const checkUser = async () => {
 			try {
 				const loggedInUser = await getUser();
-				console.log("who is the user: ", loggedInUser);
 				//then set the user data
 				if (loggedInUser) {
 					setUser(loggedInUser);
@@ -42,7 +44,8 @@ export const UserProvider = ({ children }) => {
 	};
 
 	return (
-		<UserContext.Provider value={{ User, setUser, handleLogout }}>
+		<UserContext.Provider
+			value={{ User, setUser, handleLogout, notify, setNotify }}>
 			{children}
 		</UserContext.Provider>
 	);
