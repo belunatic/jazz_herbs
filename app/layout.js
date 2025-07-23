@@ -3,6 +3,7 @@ import "@/style/globals.css";
 import NavBar from "./components/NavBar";
 import { UserProvider } from "./context/UserContext";
 import Footer from "./components/Footer";
+import NotificationBar from "./components/NotificationBar";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
 				<UserProvider>
 					<header>
 						<NavBar />
+						<NotificationBar />
 					</header>
 
 					<main className="flex-1 px-4 py-6 max-w-6xl mx-auto w-full">
