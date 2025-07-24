@@ -74,17 +74,17 @@ export default function Home() {
 	const displayHerbs = () =>
 		herbData.map((item) => {
 			return (
-				<div key={item.$id} className="h-full overflow-hidden">
-					<div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-						<h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-							{item.herb_name}
-							<br />
-							<span className="italic text-lg">{item.alt_name}</span>
-						</h1>
-						{displayHerbsFeatures("Constituents", item.herbal_constituents)}
-						{displayHerbsFeatures("Energetics", item.herbal_energetics)}
-						{displayHerbsFeatures("Action", item.herbal_action)}
-					</div>
+				<div
+					key={item.$id}
+					className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+					<h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						{item.herb_name}
+						<br />
+						<span className="italic text-lg">{item.alt_name}</span>
+					</h1>
+					{displayHerbsFeatures("Constituents", item.herbal_constituents)}
+					{displayHerbsFeatures("Energetics", item.herbal_energetics)}
+					{displayHerbsFeatures("Action", item.herbal_action)}
 				</div>
 			);
 		});
@@ -131,7 +131,7 @@ export default function Home() {
 	return (
 		<div className="bg-container">
 			<h1>Welcome {User?.name ? `, ${User.name}` : ""}</h1>
-			<main className="grid grid-cols-3 gap-4 p-4 auto-rows-fr">
+			<main className="grid grid-cols-3 gap-4 p-4 items-stretch">
 				{loading ? displayLoading() : displayHerbs()}
 			</main>
 
