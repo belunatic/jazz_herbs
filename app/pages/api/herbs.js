@@ -19,6 +19,7 @@ export const getAllHerbs = async () => {
 			process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID, // databaseId
 			process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID // collectionId
 		);
+		return result;
 	} catch (err) {
 		console.log("This is a error getting all herbs:", err);
 	}
