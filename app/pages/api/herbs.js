@@ -32,6 +32,7 @@ export const getHerb = async (herbId) => {
 			process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID, // collectionId
 			herbId //documentId
 		);
+		return result;
 		console.log(result);
 	} catch (err) {
 		console.log("This is a Error getting a herb: ", err);
