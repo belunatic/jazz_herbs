@@ -1,5 +1,5 @@
 // src/auth.js
-import { account, OAuthProvider } from "@/lib/appwrite";
+import { account, OAuthProvider } from "../../../lib/appwrite";
 
 export const loginWithGoogle = async () => {
 	try {

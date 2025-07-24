@@ -4,9 +4,9 @@ import {
 	herbalActions,
 	herbalEnergetics,
 	herbalConstituents,
-} from "@/lib/constants";
+} from "../../lib/constants";
 import { createHerb } from "@/pages/api/herbs";
-import Tooltip from "@/components/Tooltip";
+import Tooltip from "../../components/Tooltip";
 
 const AddHerb = () => {
 	const [inputName, setInputName] = useState("");

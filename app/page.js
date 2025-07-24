@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { getUser, createUserSession } from "./pages/api/auth";
 import { getAllHerbs, getHerb } from "./pages/api/herbs";
-import { useUser } from "./context/UserContext";
-import AddHerbButton from "./components/AddHerbButton";
+import { useUser } from "../context/UserContext";
+import AddHerbButton from "../components/AddHerbButton";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -57,6 +57,7 @@ export default function Home() {
 		checkUser();
 	}, []);
 
+	//get the herbs
 	useEffect(() => {
 		const getHerbs = async () => {
 			try {
@@ -71,23 +72,33 @@ export default function Home() {
 		getHerbs();
 	}, []);
 
+	//display the herbs
 	const displayHerbs = () =>
-		herbData.map((item) => {
-			return (
-				<div
-					key={item.$id}
-					className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+		herbData.map((item) => (
+			<div key={item.$id} className="max-w-sm h-full">
+				<div className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 					<h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 						{item.herb_name}
 						<br />
 						<span className="italic text-lg">{item.alt_name}</span>
 					</h1>
+
 					{displayHerbsFeatures("Constituents", item.herbal_constituents)}
 					{displayHerbsFeatures("Energetics", item.herbal_energetics)}
 					{displayHerbsFeatures("Action", item.herbal_action)}
+
+					{/* ⬇️ Push button to bottom */}
+					<div className="flex justify-end gap-4 mt-auto pt-4">
+						<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
+							Edit
+						</button>
+						<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+							Delete
+						</button>
+					</div>
 				</div>
-			);
-		});
+			</div>
+		));
 	//display the herbs features
 	const displayHerbsFeatures = (title, feat) => {
 		return (
@@ -106,7 +117,7 @@ export default function Home() {
 			</div>
 		);
 	};
-
+	//UX for the load button
 	const displayLoading = () => (
 		<div role="status" className="block mx-auto py-8 col-span-3">
 			<svg
@@ -129,9 +140,11 @@ export default function Home() {
 	);
 
 	return (
-		<div className="bg-container">
-			<h1>Welcome {User?.name ? `, ${User.name}` : ""}</h1>
-			<main className="grid grid-cols-3 gap-4 p-4 items-stretch">
+		<div className="bg-container p-4">
+			<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
+				Hello {User?.name ? `, ${User.name}` : ""}
+			</h1>
+			<main className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
 				{loading ? displayLoading() : displayHerbs()}
 			</main>
 

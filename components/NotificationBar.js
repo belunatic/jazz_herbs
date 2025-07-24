@@ -1,5 +1,5 @@
 "use client";
-import { useUser } from "@/context/UserContext";
+import { useUser } from "../context/UserContext";
 
 const NotificationBar = () => {
 	const { notify, setNotify } = useUser();
