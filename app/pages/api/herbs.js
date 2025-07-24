@@ -1,4 +1,4 @@
-import { databases, ID } from "@/lib/appwrite";
+import { databases, ID } from "../../../lib/appwrite";
 //Add a herb
 export const createHerb = async (itemData) => {
 	try {
