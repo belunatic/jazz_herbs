@@ -87,14 +87,23 @@ export default function Home() {
 					{displayHerbsFeatures("Energetics", item.herbal_energetics)}
 					{displayHerbsFeatures("Action", item.herbal_action)}
 
-					{/* ⬇️ Push button to bottom */}
+					{/* Push button to bottom */}
 					<div className="flex justify-end gap-4 mt-auto pt-4">
-						<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
-							Edit
-						</button>
 						<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
-							Delete
+							Read More
 						</button>
+						{User ? (
+							<>
+								<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
+									Edit
+								</button>
+								<button className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
+									Delete
+								</button>
+							</>
+						) : (
+							""
+						)}
 					</div>
 				</div>
 			</div>
@@ -148,7 +157,7 @@ export default function Home() {
 				{loading ? displayLoading() : displayHerbs()}
 			</main>
 
-			{User ? <AddHerbButton linkTo="herbs" title="Add herb" /> : ""}
+			{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
 		</div>
 	);
 }
