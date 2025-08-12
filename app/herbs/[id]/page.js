@@ -15,7 +15,7 @@ const HerbDetailsPage = () => {
 
 	//get the herbs
 	useEffect(() => {
-		const getHerbs = async () => {
+		const getSingleHerb = async () => {
 			try {
 				const result = await getHerb(id);
 				console.log(result);
@@ -25,22 +25,31 @@ const HerbDetailsPage = () => {
 				console.log("This is error from retrieving all herbs: ", err);
 			}
 		};
-		getHerbs();
+		getSingleHerb();
 	}, []);
 
 	//display the herbs
-	const displayHerbs = () => (
-		<div key={herbData.$id} className="max-w-sm h-full">
-			<div className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-				<h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+	const displaySingleHerb = () => (
+		<div key={herbData.$id} className="max-w-full h-full">
+			<div className="flex flex-col h-full p-6">
+				<h1 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
 					{herbData.herb_name}
 					<br />
-					<span className="italic text-lg">{herbData.alt_name}</span>
+					<span className="italic text-xl">{herbData.alt_name}</span>
 				</h1>
 
 				{displayHerbsFeatures("Constituents", herbData.herbal_constituents)}
 				{displayHerbsFeatures("Energetics", herbData.herbal_energetics)}
 				{displayHerbsFeatures("Action", herbData.herbal_action)}
+				{/* show notes if the herbs has notes */}
+				{herbData.notes.length !== 0 ? (
+					<div>
+						<p className="font-semibold text-text text-lg underline">Notes:</p>
+						<p className="text-text">{herbData.notes}</p>
+					</div>
+				) : (
+					""
+				)}
 
 				{/* Push button to bottom */}
 				<div className="flex justify-end gap-4 mt-auto pt-4">
@@ -63,9 +72,9 @@ const HerbDetailsPage = () => {
 	//display the herbs features
 	const displayHerbsFeatures = (title, feat) => {
 		return (
-			<div>
+			<div className="py-4">
 				<div>
-					<p className="font-semibold text-text underline">{title}:</p>
+					<p className="font-semibold text-text text-lg underline">{title}:</p>
 					{feat.map((val, i) => {
 						return (
 							<span key={i} className="text-text">
@@ -80,7 +89,7 @@ const HerbDetailsPage = () => {
 	};
 	//UX for the load button
 	const displayLoading = () => (
-		<div role="status" className="block mx-auto py-8 col-span-3">
+		<div role="status" className="flex justify-center ">
 			<svg
 				aria-hidden="true"
 				className="w-8 h-8 text-text animate-spin fill-blue-600"
@@ -105,8 +114,8 @@ const HerbDetailsPage = () => {
 			{/* <h1 className="text-text text-xl md:text-3xl font-bold pb-4">
 				Hello {User?.name ? `, ${User.name}` : ""}
 			</h1> */}
-			<main className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
-				{loading ? displayLoading() : displayHerbs()}
+			<main className="">
+				{loading ? displayLoading() : displaySingleHerb()}
 			</main>
 
 			{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
