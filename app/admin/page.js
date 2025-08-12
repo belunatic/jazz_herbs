@@ -2,7 +2,7 @@
 
 import { loginWithGoogle } from "@/pages/api/auth";
 
-import { useUser } from "@/context/UserContext";
+import { useUser } from "../../context/UserContext";
 
 const LoginPage = () => {
 	//const [user, setUser] = useState(null);
