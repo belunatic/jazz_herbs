@@ -4,6 +4,7 @@ import { getUser, createUserSession } from "./pages/api/auth";
 import { getAllHerbs, getHerb } from "./pages/api/herbs";
 import { useUser } from "../context/UserContext";
 import AddHerbButton from "../components/AddHerbButton";
+import Link from "next/link";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -89,9 +90,11 @@ export default function Home() {
 
 					{/* Push button to bottom */}
 					<div className="flex justify-end gap-4 mt-auto pt-4">
-						<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
-							Read More
-						</button>
+						<Link href="/herbs/1">
+							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+								Read More
+							</button>
+						</Link>
 						{User ? (
 							<>
 								<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
