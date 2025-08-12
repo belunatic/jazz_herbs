@@ -90,7 +90,7 @@ export default function Home() {
 
 					{/* Push button to bottom */}
 					<div className="flex justify-end gap-4 mt-auto pt-4">
-						<Link href="/herbs/1">
+						<Link href={`/herbs/${item.$id}`}>
 							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
 								Read More
 							</button>
@@ -134,7 +134,7 @@ export default function Home() {
 		<div role="status" className="block mx-auto py-8 col-span-3">
 			<svg
 				aria-hidden="true"
-				class="w-8 h-8 text-text animate-spin fill-blue-600"
+				className="w-8 h-8 text-text animate-spin fill-blue-600"
 				viewBox="0 0 100 101"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@ export default function Home() {
 					fill="currentFill"
 				/>
 			</svg>
-			<span class="sr-only">Loading...</span>
+			<span className="sr-only">Loading...</span>
 		</div>
 	);
 
