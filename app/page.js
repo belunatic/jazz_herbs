@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getUser, createUserSession } from "./pages/api/auth";
-import { getAllHerbs, getHerb } from "./pages/api/herbs";
+import { getAllHerbs, getHerb, deleteHerb } from "./pages/api/herbs";
 import { useUser } from "../context/UserContext";
 import AddHerbButton from "../components/AddHerbButton";
+import Modal from "../components/Modal";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,7 +12,10 @@ export default function Home() {
 	const { User, setUser, sessionOn, setNotify } = useUser();
 	const [herbData, setHerbData] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [modal, setModal] = useState(false);
+	const [selectedDeleteHerb, setSelectedDeleteHerb] = useState(null);
 
+	//Login Logic
 	useEffect(() => {
 		const checkUser = async () => {
 			try {
@@ -63,7 +67,7 @@ export default function Home() {
 		const getHerbs = async () => {
 			try {
 				const result = await getAllHerbs();
-				console.log(result.documents);
+				// console.log(result.documents);
 				setHerbData(result.documents);
 				setLoading(false);
 			} catch (err) {
@@ -100,7 +104,9 @@ export default function Home() {
 								<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
 									Edit
 								</button>
-								<button className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
+								<button
+									onClick={(e) => openModal(e, item.$id)}
+									className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
 									Delete
 								</button>
 							</>
@@ -151,16 +157,48 @@ export default function Home() {
 		</div>
 	);
 
-	return (
-		<div className="bg-container p-4">
-			<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
-				Hello {User?.name ? `, ${User.name}` : ""}
-			</h1>
-			<main className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
-				{loading ? displayLoading() : displayHerbs()}
-			</main>
+	//open confirmation modal and set the deleted Item
+	// to be deleted when the user confirms the deletion
+	const openModal = (e, id) => {
+		//prevent the default action of a link from being triggered
+		e.preventDefault();
+		// console.log(id);
+		setModal(true);
+		setSelectedDeleteHerb(id);
+	};
 
-			{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
-		</div>
+	//delete a herb function
+	const deleteHerbFunc = async (id) => {
+		try {
+			const result = await deleteHerb(id);
+			// console.log(result);
+			setHerbData(herbData.filter((item) => item.$id !== id));
+			setModal(false);
+		} catch (err) {
+			console.log("Error occurred while trying to delete:", err);
+		}
+	};
+
+	return (
+		<>
+			{modal && (
+				<Modal
+					openModal={modal}
+					closeModal={() => setModal(false)}
+					confirmFunction={() => deleteHerbFunc(selectedDeleteHerb)}>
+					Are you sure you want to delete this herb?
+				</Modal>
+			)}
+			<div className="bg-container p-4">
+				<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
+					Hello {User?.name ? `, ${User.name}` : ""}
+				</h1>
+				<main className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
+					{loading ? displayLoading() : displayHerbs()}
+				</main>
+
+				{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
+			</div>
+		</>
 	);
 }

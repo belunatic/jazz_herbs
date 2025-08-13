@@ -1,24 +1,29 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { getHerb } from "@/pages/api/herbs";
+import { getHerb, deleteHerb } from "@/pages/api/herbs";
 import AddHerbButton from "../../../components/AddHerbButton";
 import { useUser } from "../../../context/UserContext";
+import Modal from "../../../components/Modal";
+import { useRouter } from "next/navigation";
 
 const HerbDetailsPage = () => {
 	//retrieve the id
 	const { id } = useParams();
+	const router = useRouter();
 	// retrieve the user info from Context
 	const { User, setUser, sessionOn, setNotify } = useUser();
 	const [loading, setLoading] = useState(true);
 	const [herbData, setHerbData] = useState(null);
+	const [modal, setModal] = useState(false);
+	const [selectedDeleteHerb, setSelectedDeleteHerb] = useState(null);
 
 	//get the herbs
 	useEffect(() => {
 		const getSingleHerb = async () => {
 			try {
 				const result = await getHerb(id);
-				console.log(result);
+				// console.log(result);
 				setHerbData(result);
 				setLoading(false);
 			} catch (err) {
@@ -58,7 +63,9 @@ const HerbDetailsPage = () => {
 							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
 								Edit
 							</button>
-							<button className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
+							<button
+								onClick={(e) => openModal(e, herbData.$id)}
+								className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
 								Delete
 							</button>
 						</>
@@ -109,17 +116,50 @@ const HerbDetailsPage = () => {
 		</div>
 	);
 
+	//open confirmation modal and set the deleted Item
+	// to be deleted when the user confirms the deletion
+	const openModal = (e, id) => {
+		//prevent the default action of a link from being triggered
+		e.preventDefault();
+		// console.log(id);
+		setModal(true);
+		setSelectedDeleteHerb(id);
+	};
+
+	//delete a herb function
+	const deleteHerbFunc = async (id) => {
+		try {
+			const result = await deleteHerb(id);
+			// console.log(result);
+			setModal(false);
+			//redirect to home after deletion
+			router.push("/");
+		} catch (err) {
+			console.log("Error occurred while trying to delete:", err);
+		}
+	};
+
 	return (
-		<div className="bg-container p-4">
-			{/* <h1 className="text-text text-xl md:text-3xl font-bold pb-4">
+		<>
+			{modal && (
+				<Modal
+					openModal={modal}
+					closeModal={() => setModal(false)}
+					confirmFunction={() => deleteHerbFunc(selectedDeleteHerb)}>
+					Are you sure you want to delete this herb?
+				</Modal>
+			)}
+			<div className="bg-container p-4">
+				{/* <h1 className="text-text text-xl md:text-3xl font-bold pb-4">
 				Hello {User?.name ? `, ${User.name}` : ""}
 			</h1> */}
-			<main className="">
-				{loading ? displayLoading() : displaySingleHerb()}
-			</main>
+				<main className="">
+					{loading ? displayLoading() : displaySingleHerb()}
+				</main>
 
-			{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
-		</div>
+				{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
+			</div>
+		</>
 	);
 };
 
