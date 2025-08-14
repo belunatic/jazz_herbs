@@ -7,10 +7,12 @@ import {
 } from "../../../lib/constants";
 import { createHerb } from "@/pages/api/herbs";
 import Tooltip from "../../../components/Tooltip";
+import Link from "next/link";
 
 const AddHerb = () => {
 	const [inputName, setInputName] = useState("");
 	const [inputAltName, setInputAltName] = useState("");
+	const [confirmMessage, setConfirmMessage] = useState(false);
 
 	//Herb Action (constituents)
 	//Energetics
@@ -72,9 +74,11 @@ const AddHerb = () => {
 			}
 		}
 
-		console.log(formData);
-		// You can add your submit logic here (e.g., API call)
-		createHerb(formData);
+		// console.log(formData);
+		// Add the herb via API call
+		const result = createHerb(formData);
+		//show a success message
+		result && setConfirmMessage(true);
 		//reset form
 		e.target.reset();
 	};
@@ -96,6 +100,7 @@ const AddHerb = () => {
 							id="herb_name"
 							placeholder="Ginger"
 							required
+							onFocus={() => setConfirmMessage(false)}
 						/>
 					</div>
 					<div className="mb-5">
@@ -110,6 +115,7 @@ const AddHerb = () => {
 							name="alt_name"
 							id="alt_name"
 							placeholder="Ginger"
+							onFocus={() => setConfirmMessage(false)}
 						/>
 					</div>
 					<div className="mb-5">
@@ -161,6 +167,14 @@ const AddHerb = () => {
 						className="bg-button-success cursor-pointer text-text hover:bg-button-hover rounded-lg p-2">
 						Submit
 					</button>
+					{confirmMessage && (
+						<p className="text-text font-semibold mt-4 italic">
+							*The Herb has been added!{" "}
+							<Link href="/" className="underline text-button-secondary">
+								Go Back Home!
+							</Link>
+						</p>
+					)}
 				</form>
 			</main>
 		</div>
