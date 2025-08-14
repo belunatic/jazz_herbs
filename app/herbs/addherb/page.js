@@ -170,7 +170,9 @@ const AddHerb = () => {
 					{confirmMessage && (
 						<p className="text-text font-semibold mt-4 italic">
 							*The Herb has been added!{" "}
-							<Link href="/" className="underline text-button-secondary">
+							<Link
+								href="/"
+								className="underline text-button-secondary cursor-pointer">
 								Go Back Home!
 							</Link>
 						</p>
