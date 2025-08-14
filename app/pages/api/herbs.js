@@ -8,6 +8,7 @@ export const createHerb = async (itemData) => {
 			ID.unique(), // documentId
 			itemData // data
 		);
+		return result;
 	} catch (err) {
 		console.log(err);
 	}
