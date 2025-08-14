@@ -101,9 +101,11 @@ export default function Home() {
 						</Link>
 						{User ? (
 							<>
-								<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
-									Edit
-								</button>
+								<Link href={`/herbs/editherb/${item.$id}`}>
+									<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
+										Edit
+									</button>
+								</Link>
 								<button
 									onClick={(e) => openModal(e, item.$id)}
 									className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
