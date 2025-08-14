@@ -100,7 +100,7 @@ const EditHerb = () => {
 
 		// console.log(formData);
 		// Add the herb via API call
-		const result = createHerb(formData);
+		const result = updateHerb(id, formData);
 		//show a success message
 		result && setConfirmMessage(true);
 		//reset form
@@ -216,7 +216,9 @@ const EditHerb = () => {
 						{confirmMessage && (
 							<p className="text-text font-semibold mt-4 italic">
 								*The Herb has been added!{" "}
-								<Link href="/" className="underline text-button-secondary">
+								<Link
+									href="/"
+									className="underline text-button-secondary cursor-pointer">
 									Go Back Home!
 								</Link>
 							</p>
