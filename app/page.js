@@ -102,13 +102,13 @@ export default function Home() {
 						{User ? (
 							<>
 								<Link href={`/herbs/editherb/${item.$id}`}>
-									<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
+									<button className="py-2 px-1 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
 										Edit
 									</button>
 								</Link>
 								<button
 									onClick={(e) => openModal(e, item.$id)}
-									className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
+									className="py-2 px-1 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
 									Delete
 								</button>
 							</>
@@ -192,11 +192,23 @@ export default function Home() {
 				</Modal>
 			)}
 			<div className="bg-container p-4">
-				<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
-					Hello {User?.name ? `, ${User.name}` : ""}
-				</h1>
-				<main className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
-					{loading ? displayLoading() : displayHerbs()}
+				<div className=" flex justify-between mb-4">
+					<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
+						Hello {User?.name ? `, ${User.name}` : ""}
+					</h1>
+					<button className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip">
+						Filter
+					</button>
+				</div>
+				<main className="flex flex-col md:flex-row gap-4 items-stretch">
+					<section className="md:w-1/5">
+						<h1 className="text-text">Hello World</h1>
+					</section>
+					<section className="md:w-4/5">
+						<div className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
+							{loading ? displayLoading() : displayHerbs()}
+						</div>
+					</section>
 				</main>
 
 				{User ? <AddHerbButton linkTo="herbs/addherb" title="Add herb" /> : ""}
