@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-export default function HerbalCheckboxGroup({ title, data }) {
-	const [selectedItems, setSelectedItems] = useState([]);
+export default function HerbalCheckboxGroup({
+	title,
+	data,
+	selectedItems,
+	setSelectedItems,
+}) {
 	const [open, setOpen] = useState(false);
 
 	//save selected inputs
@@ -14,10 +18,6 @@ export default function HerbalCheckboxGroup({ title, data }) {
 				: [...prev, name]
 		);
 	};
-
-	useEffect(() => {
-		console.log(selectedItems);
-	}, [selectedItems]);
 
 	return (
 		<div className="mb-6">
