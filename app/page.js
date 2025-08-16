@@ -16,11 +16,16 @@ import {
 export default function Home() {
 	// retrieve the user info from Context
 	const { User, setUser, sessionOn, setNotify } = useUser();
+	const [originalHerbData, setOriginalHerbData] = useState(false);
 	const [herbData, setHerbData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [modal, setModal] = useState(false);
 	const [selectedDeleteHerb, setSelectedDeleteHerb] = useState(null);
 	const [showFilterCol, setShowFilterCol] = useState(false);
+	//filter purposes
+	const [selectedActions, setSelectedActions] = useState([]);
+	const [selectedEnergetics, setSelectedEnergetics] = useState([]);
+	const [selectedConstituents, setSelectedConstituents] = useState([]);
 
 	//Login Logic
 	useEffect(() => {
@@ -74,7 +79,7 @@ export default function Home() {
 		const getHerbs = async () => {
 			try {
 				const result = await getAllHerbs();
-				// console.log(result.documents);
+				setOriginalHerbData(result.documents);
 				setHerbData(result.documents);
 				setLoading(false);
 			} catch (err) {
@@ -83,6 +88,40 @@ export default function Home() {
 		};
 		getHerbs();
 	}, []);
+
+	//filter the herbs
+	useEffect(() => {
+		//check to see if original data is loaded from the server
+		if (originalHerbData) {
+			//filter thru original data
+			const filteredData = originalHerbData.filter((item) => {
+				//if NO condition is selected return true( a.k.a return all)
+				//OR if condition is selected return only the data that matches the filter
+				const matchesActions =
+					selectedActions.length === 0 ||
+					item.herbal_action?.some((a) => selectedActions.includes(a));
+
+				const matchesEnergetics =
+					selectedEnergetics.length === 0 ||
+					item.herbal_energetics?.some((e) => selectedEnergetics.includes(e));
+
+				const matchesConstituents =
+					selectedConstituents.length === 0 ||
+					item.herbal_constituents?.some((c) =>
+						selectedConstituents.includes(c)
+					);
+				//return the ITEM that matches all the conditions
+				return matchesActions && matchesEnergetics && matchesConstituents;
+			});
+
+			setHerbData(filteredData);
+		}
+	}, [
+		selectedActions,
+		selectedEnergetics,
+		selectedConstituents,
+		originalHerbData,
+	]);
 
 	//display the herbs
 	const displayHerbs = () =>
@@ -214,11 +253,26 @@ export default function Home() {
 						className={` ${
 							showFilterCol ? "md:w-1/5" : "hidden"
 						} h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`}>
-						<HerbalCheckboxGroup title="Actions" data={herbalActions} />
-						<HerbalCheckboxGroup title="Energetics" data={herbalEnergetics} />
 						<HerbalCheckboxGroup
 							title="Constituents"
 							data={herbalConstituents}
+							attributeName="herbal_constituents"
+							selectedItems={selectedConstituents}
+							setSelectedItems={setSelectedConstituents}
+						/>
+						<HerbalCheckboxGroup
+							title="Energetics"
+							data={herbalEnergetics}
+							attributeName="herbal_energetics"
+							selectedItems={selectedEnergetics}
+							setSelectedItems={setSelectedEnergetics}
+						/>
+						<HerbalCheckboxGroup
+							title="Actions"
+							data={herbalActions}
+							attributeName="herbal_action"
+							selectedItems={selectedActions}
+							setSelectedItems={setSelectedActions}
 						/>
 					</section>
 					<section className={` ${showFilterCol ? "md:w-4/5" : "w-full"}`}>
