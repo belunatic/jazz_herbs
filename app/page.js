@@ -6,6 +6,12 @@ import { useUser } from "../context/UserContext";
 import AddHerbButton from "../components/AddHerbButton";
 import Modal from "../components/Modal";
 import Link from "next/link";
+import HerbalCheckboxGroup from "../components/HerbalFilterCheckbox";
+import {
+	herbalActions,
+	herbalEnergetics,
+	herbalConstituents,
+} from "../lib/constants"; // adjust path as needed
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -14,6 +20,7 @@ export default function Home() {
 	const [loading, setLoading] = useState(true);
 	const [modal, setModal] = useState(false);
 	const [selectedDeleteHerb, setSelectedDeleteHerb] = useState(null);
+	const [showFilterCol, setShowFilterCol] = useState(false);
 
 	//Login Logic
 	useEffect(() => {
@@ -196,15 +203,25 @@ export default function Home() {
 					<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
 						Hello {User?.name ? `, ${User.name}` : ""}
 					</h1>
-					<button className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip">
-						Filter
+					<button
+						className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
+						onClick={() => setShowFilterCol(!showFilterCol)}>
+						{showFilterCol ? "Close" : "Filter"}
 					</button>
 				</div>
 				<main className="flex flex-col md:flex-row gap-4 items-stretch">
-					<section className="md:w-1/5">
-						<h1 className="text-text">Hello World</h1>
+					<section
+						className={` ${
+							showFilterCol ? "md:w-1/5" : "hidden"
+						} h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`}>
+						<HerbalCheckboxGroup title="Actions" data={herbalActions} />
+						<HerbalCheckboxGroup title="Energetics" data={herbalEnergetics} />
+						<HerbalCheckboxGroup
+							title="Constituents"
+							data={herbalConstituents}
+						/>
 					</section>
-					<section className="md:w-4/5">
+					<section className={` ${showFilterCol ? "md:w-4/5" : "w-full"}`}>
 						<div className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
 							{loading ? displayLoading() : displayHerbs()}
 						</div>
