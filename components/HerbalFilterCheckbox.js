@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HerbalCheckboxGroup({ title, data }) {
 	const [selectedItems, setSelectedItems] = useState([]);
 	const [open, setOpen] = useState(false);
 
+	//save selected inputs
 	const handleChange = (name) => {
 		setSelectedItems((prev) =>
 			prev.includes(name)
@@ -13,6 +14,10 @@ export default function HerbalCheckboxGroup({ title, data }) {
 				: [...prev, name]
 		);
 	};
+
+	useEffect(() => {
+		console.log(selectedItems);
+	}, [selectedItems]);
 
 	return (
 		<div className="mb-6">
