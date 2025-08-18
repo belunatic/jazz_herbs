@@ -12,6 +12,7 @@ import {
 	herbalEnergetics,
 	herbalConstituents,
 } from "../lib/constants"; // adjust path as needed
+import SearchForm from "../components/SearchForm";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -274,6 +275,8 @@ export default function Home() {
 							selectedItems={selectedActions}
 							setSelectedItems={setSelectedActions}
 						/>
+						<hr className="w-full text-text h-2" />
+						<SearchForm />
 					</section>
 					<section className={` ${showFilterCol ? "md:w-4/5" : "w-full"}`}>
 						<div className="grid grid-col-1 md:grid-cols-3 gap-4  items-stretch">
