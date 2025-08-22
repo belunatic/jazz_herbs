@@ -228,6 +228,13 @@ export default function Home() {
 		}
 	};
 
+	const resetAll = () => {
+		setSelectedActions([]);
+		setSelectedConstituents([]);
+		setSelectedEnergetics([]);
+		setHerbData(originalHerbData);
+	};
+
 	return (
 		<>
 			{modal && (
@@ -243,11 +250,18 @@ export default function Home() {
 					<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
 						Hello {User?.name ? `, ${User.name}` : ""}
 					</h1>
-					<button
-						className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
-						onClick={() => setShowFilterCol(!showFilterCol)}>
-						{showFilterCol ? "Close" : "Filter"}
-					</button>
+					<div className="flex gap-4">
+						<button
+							className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
+							onClick={resetAll}>
+							Reset
+						</button>
+						<button
+							className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
+							onClick={() => setShowFilterCol(!showFilterCol)}>
+							{showFilterCol ? "Close" : "Filter"}
+						</button>
+					</div>
 				</div>
 				<main className="flex flex-col md:flex-row gap-4 items-stretch">
 					<section
