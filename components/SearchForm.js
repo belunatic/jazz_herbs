@@ -12,13 +12,17 @@ const SearchForm = ({ currentHerbData, setHerbData }) => {
 					console.log(item.herb_name, item.alt_name);
 					const matchesHerbName =
 						searchTerm.length === 0 ||
-						item.herb_name.toLowerCase() === searchTerm.toLowerCase();
+						item.herb_name.toLowerCase().includes(searchTerm.toLowerCase());
 
 					const matchesAltName =
 						searchTerm.length === 0 ||
-						item.alt_name.toLowerCase() === searchTerm.toLowerCase();
+						item.alt_name.toLowerCase().includes(searchTerm.toLowerCase());
 
-					return matchesAltName || matchesHerbName;
+					const matchesNotes =
+						searchTerm.length === 0 ||
+						item.notes.toLowerCase().includes(searchTerm.toLowerCase());
+
+					return matchesAltName || matchesHerbName || matchesNotes;
 				})
 			);
 		}
