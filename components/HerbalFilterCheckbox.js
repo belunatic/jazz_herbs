@@ -26,7 +26,7 @@ export default function HerbalCheckboxGroup({
 				<p
 					onClick={() => setOpen(!open)}
 					className="text-text font-bold text-2xl cursor-pointer">
-					{!open ? "-" : "+"}
+					{!open ? "+" : "-"}
 				</p>
 			</div>
 			{open ? (
