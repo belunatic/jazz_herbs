@@ -13,7 +13,13 @@ import {
 	herbalConstituents,
 } from "../lib/constants"; // adjust path as needed
 import SearchForm from "../components/SearchForm";
-import { FaTrashCan, FaPenToSquare } from "react-icons/fa6";
+import {
+	FaTrashCan,
+	FaPenToSquare,
+	FaXmark,
+	FaSliders,
+	FaArrowsRotate,
+} from "react-icons/fa6";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -249,20 +255,20 @@ export default function Home() {
 				</Modal>
 			)}
 			<div className="bg-container p-4">
-				<div className=" flex justify-between mb-4">
+				<div className=" flex justify-between mb-4 items-center">
 					<h1 className="text-text text-xl md:text-3xl font-bold pb-4">
 						Hello {User?.name ? `, ${User.name}` : ""}
 					</h1>
 					<div className="flex gap-4">
 						<button
-							className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
+							className="px-2 py-2 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
 							onClick={resetAll}>
-							Reset
+							<FaArrowsRotate />
 						</button>
 						<button
-							className="px-2 py-1 rounded-lg text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
+							className="px-2 py-2 rounded-lg  text-text cursor-pointer hover:bg-tooltip/70 bg-tooltip"
 							onClick={() => setShowFilterCol(!showFilterCol)}>
-							{showFilterCol ? "Close" : "Filter"}
+							{showFilterCol ? <FaXmark /> : <FaSliders />}
 						</button>
 					</div>
 				</div>
