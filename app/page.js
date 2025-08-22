@@ -129,11 +129,13 @@ export default function Home() {
 		herbData.map((item) => (
 			<div key={item.$id} className="max-w-sm h-full">
 				<div className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-					<h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-						{item.herb_name}
-						<br />
-						<span className="italic text-lg">{item.alt_name}</span>
-					</h1>
+					<Link href={`/herbs/${item.$id}`}>
+						<h1 className="mb-2 text-2xl cursor-pointer font-bold tracking-tight text-gray-900 dark:text-white">
+							{item.herb_name}
+							<br />
+							<span className="italic text-lg">{item.alt_name}</span>
+						</h1>
+					</Link>
 
 					{displayHerbsFeatures("Constituents", item.herbal_constituents)}
 					{displayHerbsFeatures("Energetics", item.herbal_energetics)}
