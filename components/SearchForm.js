@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 
 const SearchForm = ({ currentHerbData, setHerbData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const searchSubmit = () => {
+	//on submit
+	const searchSubmit = (e) => {
+		e.preventDefault();
 		console.log(searchTerm);
 		console.log(currentHerbData);
 		if (currentHerbData) {
@@ -29,19 +31,21 @@ const SearchForm = ({ currentHerbData, setHerbData }) => {
 	};
 
 	return (
-		<div className="flex flex-col gap-y-4 mt-6">
-			<input
-				className="block w-full p-2.5 border-text border-size border-1 rounded-box text-text"
-				type="text"
-				name="search"
-				id="search"
-				onChange={(e) => setSearchTerm(e.target.value)}
-			/>
-			<button
-				onClick={searchSubmit}
-				className="py-2 block px-1 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success w-full">
-				Search
-			</button>
+		<div>
+			<form onSubmit={searchSubmit} className="flex flex-col gap-y-4 mt-6">
+				<input
+					className="block w-full p-2.5 border-text border-size border-1 rounded-box text-text"
+					type="text"
+					name="search"
+					id="search"
+					onChange={(e) => setSearchTerm(e.target.value)}
+				/>
+				<button
+					// onClick={searchSubmit}
+					className="py-2 block px-1 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success w-full">
+					Search
+				</button>
+			</form>
 		</div>
 	);
 };
