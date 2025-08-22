@@ -13,6 +13,7 @@ import {
 	herbalConstituents,
 } from "../lib/constants"; // adjust path as needed
 import SearchForm from "../components/SearchForm";
+import { FaTrashCan, FaPenToSquare } from "react-icons/fa6";
 
 export default function Home() {
 	// retrieve the user info from Context
@@ -144,21 +145,21 @@ export default function Home() {
 					{/* Push button to bottom */}
 					<div className="flex justify-end gap-4 mt-auto pt-4">
 						<Link href={`/herbs/${item.$id}`}>
-							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+							<button className="p-2 h-[40px] cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
 								Read More
 							</button>
 						</Link>
 						{User ? (
 							<>
 								<Link href={`/herbs/editherb/${item.$id}`}>
-									<button className="py-2 px-1 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
-										Edit
+									<button className="py-2 px-1 h-[40px] cursor-pointer hover:bg-button-success/70 bg-button-success text">
+										<FaPenToSquare />
 									</button>
 								</Link>
 								<button
 									onClick={(e) => openModal(e, item.$id)}
-									className="py-2 px-1 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
-									Delete
+									className="py-2 px-1 h-[40px] cursor-pointer hover:bg-error/70 bg-error text">
+									<FaTrashCan />
 								</button>
 							</>
 						) : (

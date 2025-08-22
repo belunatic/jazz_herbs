@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 
 export default function HerbalCheckboxGroup({
 	title,
@@ -21,12 +22,12 @@ export default function HerbalCheckboxGroup({
 
 	return (
 		<div className="mb-6">
-			<div className="flex justify-between">
+			<div className="flex justify-between items-center">
 				<h2 className="text-xl font-semibold mb-2 text-text ">{title}</h2>
 				<p
 					onClick={() => setOpen(!open)}
-					className="text-text font-bold text-2xl cursor-pointer">
-					{!open ? "+" : "-"}
+					className="text-text font-bold text-xl cursor-pointer">
+					{!open ? <FaPlus /> : <FaMinus />}
 				</p>
 			</div>
 			{open ? (

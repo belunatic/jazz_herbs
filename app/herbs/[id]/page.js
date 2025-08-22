@@ -6,6 +6,7 @@ import AddHerbButton from "../../../components/AddHerbButton";
 import { useUser } from "../../../context/UserContext";
 import Modal from "../../../components/Modal";
 import { useRouter } from "next/navigation";
+import { FaTrashCan, FaPenToSquare } from "react-icons/fa6";
 
 const HerbDetailsPage = () => {
 	//retrieve the id
@@ -60,13 +61,13 @@ const HerbDetailsPage = () => {
 				<div className="flex justify-end gap-4 mt-auto pt-4">
 					{User ? (
 						<>
-							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
-								Edit
+							<button className="p-2  cursor-pointer hover:bg-button-success/70 bg-button-success text">
+								<FaPenToSquare />
 							</button>
 							<button
 								onClick={(e) => openModal(e, herbData.$id)}
-								className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
-								Delete
+								className="p-2  cursor-pointer hover:bg-error/70 bg-error text">
+								<FaTrashCan />
 							</button>
 						</>
 					) : (
