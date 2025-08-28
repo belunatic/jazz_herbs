@@ -6,6 +6,7 @@ import AddHerbButton from "../../../components/AddHerbButton";
 import { useUser } from "../../../context/UserContext";
 import Modal from "../../../components/Modal";
 import { useRouter } from "next/navigation";
+import { FaTrashCan, FaPenToSquare } from "react-icons/fa6";
 
 const HerbDetailsPage = () => {
 	//retrieve the id
@@ -17,6 +18,7 @@ const HerbDetailsPage = () => {
 	const [herbData, setHerbData] = useState(null);
 	const [modal, setModal] = useState(false);
 	const [selectedDeleteHerb, setSelectedDeleteHerb] = useState(null);
+	const [copies, setCopied] = useState(false);
 
 	//get the herbs
 	useEffect(() => {
@@ -60,13 +62,18 @@ const HerbDetailsPage = () => {
 				<div className="flex justify-end gap-4 mt-auto pt-4">
 					{User ? (
 						<>
-							<button className="p-2 rounded-lg cursor-pointer hover:bg-button-success/70 bg-button-success text">
-								Edit
+							<button
+								onClick={copyToClipboard}
+								className="p-2  cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+								{copies ? "Linked Copied" : "Copy Link"}
+							</button>
+							<button className="p-2  cursor-pointer hover:bg-button-success/70 bg-button-success text">
+								<FaPenToSquare />
 							</button>
 							<button
 								onClick={(e) => openModal(e, herbData.$id)}
-								className="p-2 rounded-lg cursor-pointer hover:bg-error/70 bg-error text">
-								Delete
+								className="p-2  cursor-pointer hover:bg-error/70 bg-error text">
+								<FaTrashCan />
 							</button>
 						</>
 					) : (
@@ -137,6 +144,27 @@ const HerbDetailsPage = () => {
 		} catch (err) {
 			console.log("Error occurred while trying to delete:", err);
 		}
+	};
+
+	//copy to the browser clipboard
+	const copyToClipboard = () => {
+		//get the current url
+		const url = window.location.href;
+		//copy url to the clipboard
+		navigator.clipboard
+			.writeText(url)
+			.then(() => {
+				console.log("link is copied: ", url);
+				setCopied(true);
+				//in given second turn back the boolean
+				//use to change the "Copy Link" button text
+				setTimeout(() => {
+					setCopied(false);
+				}, 3000);
+			})
+			.catch((err) => {
+				console.log("An error occurred when copying the link: ", err);
+			});
 	};
 
 	return (

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useUser } from "../context/UserContext";
 import Link from "next/link";
+import { FaRightFromBracket, FaRightToBracket } from "react-icons/fa6";
 
 const NavBar = () => {
 	const { User, handleLogout } = useUser();
@@ -22,10 +23,14 @@ const NavBar = () => {
 							<button
 								onClick={handleLogout}
 								className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-primary transition duration-300">
-								Logout
+								<FaRightFromBracket />
 							</button>
 						) : (
-							""
+							<Link href="/admin">
+								<button className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-primary transition duration-300">
+									<FaRightToBracket />
+								</button>
+							</Link>
 						)}
 					</div>
 				</div>
