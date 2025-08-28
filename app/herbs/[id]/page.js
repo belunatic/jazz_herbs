@@ -6,6 +6,7 @@ import AddHerbButton from "../../../components/AddHerbButton";
 import { useUser } from "../../../context/UserContext";
 import Modal from "../../../components/Modal";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FaTrashCan, FaPenToSquare } from "react-icons/fa6";
 
 const HerbDetailsPage = () => {
@@ -67,9 +68,13 @@ const HerbDetailsPage = () => {
 								className="p-2  cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
 								{copies ? "Linked Copied" : "Copy Link"}
 							</button>
-							<button className="p-2  cursor-pointer hover:bg-button-success/70 bg-button-success text">
-								<FaPenToSquare />
-							</button>
+							<Link
+								href={`/herbs/editherb/${id}`}
+								className="p-2 cursor-pointer hover:bg-button-success/70 bg-button-success">
+								<button className="cursor-pointer">
+									<FaPenToSquare />
+								</button>
+							</Link>
 							<button
 								onClick={(e) => openModal(e, herbData.$id)}
 								className="p-2  cursor-pointer hover:bg-error/70 bg-error text">
