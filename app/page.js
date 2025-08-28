@@ -158,13 +158,13 @@ export default function Home() {
 						{User ? (
 							<>
 								<Link href={`/herbs/editherb/${item.$id}`}>
-									<button className="py-2 px-1 h-[40px] cursor-pointer hover:bg-button-success/70 bg-button-success text">
+									<button className="p-2 h-[40px] cursor-pointer hover:bg-button-success/70 bg-button-success text">
 										<FaPenToSquare />
 									</button>
 								</Link>
 								<button
 									onClick={(e) => openModal(e, item.$id)}
-									className="py-2 px-1 h-[40px] cursor-pointer hover:bg-error/70 bg-error text">
+									className="p-2 h-[40px] cursor-pointer hover:bg-error/70 bg-error text">
 									<FaTrashCan />
 								</button>
 							</>
