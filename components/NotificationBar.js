@@ -11,7 +11,7 @@ const NotificationBar = () => {
 		<>
 			{notify ? (
 				<div
-					className="p-4 mb-4  flex justify-between text-sm text-red-800  bg-red-50 dark:bg-gray-800 dark:text-red-400"
+					className="p-4 mb-4  flex justify-between text-sm text-red-800  bg-red-50 dark:bg-gray-800 dark:text-red-500"
 					role="alert">
 					<p>Sorry, but you do not have access to this app.</p>
 					<span

@@ -151,7 +151,7 @@ export default function Home() {
 					{/* Push button to bottom */}
 					<div className="flex justify-end gap-4 mt-auto pt-4">
 						<Link href={`/herbs/${item.$id}`}>
-							<button className="p-2 h-[40px] cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+							<button className="p-2 h-[40px] cursor-pointer hover:bg-button-secondary/50 bg-button-secondary text">
 								Read More
 							</button>
 						</Link>

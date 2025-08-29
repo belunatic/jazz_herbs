@@ -65,7 +65,7 @@ const HerbDetailsPage = () => {
 						<>
 							<button
 								onClick={copyToClipboard}
-								className="p-2  cursor-pointer hover:bg-button-secondary/70 bg-button-secondary text">
+								className="p-2  cursor-pointer hover:bg-button-secondary/50 bg-button-secondary text">
 								{copies ? "Linked Copied" : "Copy Link"}
 							</button>
 							<Link

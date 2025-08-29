@@ -22,12 +22,12 @@ const NavBar = () => {
 						{User ? (
 							<button
 								onClick={handleLogout}
-								className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-primary transition duration-300">
+								className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-hover/80 transition duration-300">
 								<FaRightFromBracket />
 							</button>
 						) : (
 							<Link href="/admin">
-								<button className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-primary transition duration-300">
+								<button className="bg-button-hover dark:text-black text-text px-4 py-2 rounded cursor-pointer hover:bg-button-hover/80 transition duration-300">
 									<FaRightToBracket />
 								</button>
 							</Link>
