@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jazzmyn Apothecary
 
-## Getting Started
+Jazzmyn Apothecary is a personal web app designed to support a student’s journey through herbalism. It functions as a dynamic note-taking tool and cheatsheet, allowing users to document herbs, search and filter entries, and share curated knowledge with others via copyable links. Built with simplicity and purpose, this app empowers learners to organize and access herbal insights anytime, anywhere.
 
-First, run the development server:
+Link to project: [jazz-herb-onrender.com](https://jazz-herbs.onrender.com/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How It's Made
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech used: HTML, Tailwind CSS, Next.js, Appwrite
+This project was developed using Next.js with the App Router for modern routing and component structure. Tailwind CSS powers the design system, enabling rapid styling and responsive layouts. Appwrite handles authentication and database interactions, ensuring secure access and scalable data management.
+Users can:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Add and edit herbal entries
+- Search and filter herbs by name or category
+- Copy links to share specific entries with others
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app uses both client and server components to manage state and restrict access to authenticated users. Clipboard functionality allows seamless sharing, and the interface is optimized for clarity and ease of use.
 
-## Learn More
+## Optimize
 
-To learn more about Next.js, take a look at the following resources:
+Future enhancements include:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Image upload support for visual herb identification
+- Social sharing features to spread herbal knowledge
+- Improved categorization and tagging for faster filtering
+- Utilize Appwrite Function feature to keep track of login users, events, TBD.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Lessons Learned
 
-## Deploy on Vercel
+This project deepened my understanding of:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Integrating client and server components in Next.js
+- Managing user access and authentication securely
+- Implementing clipboard interactions for shareable content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Jazzmyn Apothecary reflects the power of thoughtful tooling and user-centered design. It’s a foundation for more advanced, collaborative learning platforms to come.
