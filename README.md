@@ -34,4 +34,4 @@ This project deepened my understanding of:
 - Managing user access and authentication securely
 - Implementing clipboard interactions for shareable content
 
-Jazzmyn Apothecary reflects the power of thoughtful tooling and user-centered design. It’s a foundation for more advanced, collaborative learning platforms to come.
+Jazzmyn's Apothecary reflects the power of thoughtful tooling and user-centered design. It’s a foundation for more advanced, collaborative learning platforms to come.
