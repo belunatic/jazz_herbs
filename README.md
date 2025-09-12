@@ -1,6 +1,6 @@
 # Jazzmyn's Apothecary
 
-Jazzmyn's Apothecary is a personal web app designed to support an amateur herbalist build an on-demand inventory/apothecary. It functions as a dynamic note-taking tool, inventory list, forumla guide, and cheatsheet, allowing users to document herbs through different identifying qualities, search and filter entries, and share curated knowledge with others via copyable links. Built with simplicity and purpose, this app empowers learners to organize and access information about utilizing herbal medicine anytime, anywhere.
+Jazzmyn's Apothecary is a personal web app designed to support an amateur herbalist build an on-demand inventory/apothecary. It functions as a dynamic note-taking tool, inventory list, formula guide, and cheatsheet, allowing users to document herbs through different identifying qualities, search and filter entries, and share curated knowledge with others via copyable links. Built with simplicity and purpose, this app empowers learners to organize and access information about utilizing herbal medicine anytime, anywhere.
 
 Link to project: [jazz-herb-onrender.com](https://jazz-herbs.onrender.com/)
 
