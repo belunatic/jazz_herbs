@@ -41,9 +41,11 @@ const HerbDetailsPage = () => {
 		<div key={herbData.$id} className="max-w-full h-full">
 			<div className="flex flex-col h-full p-6">
 				<h1 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-					{herbData.herb_name}
+					{herbData.latin_name}
 					<br />
-					<span className="italic text-xl">{herbData.alt_name}</span>
+					<span className="italic text-xl">
+						{herbData.alt_name} / {herbData.herb_name}
+					</span>
 				</h1>
 
 				{displayHerbsFeatures("Constituents", herbData.herbal_constituents)}
