@@ -137,6 +137,23 @@ const EditHerb = () => {
 						<div className="mb-5">
 							<label
 								className="block text-text-input text-lg mb-2 font-semibold"
+								htmlFor="latin_name">
+								Name
+							</label>
+							<input
+								className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
+								type="text"
+								name="latin_name"
+								id="latin_name"
+								placeholder="Ginger"
+								required
+								onFocus={() => setConfirmMessage(false)}
+								defaultValue={herbData.latin_name}
+							/>
+						</div>
+						<div className="mb-5">
+							<label
+								className="block text-text-input text-lg mb-2 font-semibold"
 								htmlFor="herb_name">
 								Name
 							</label>
