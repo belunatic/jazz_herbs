@@ -44,7 +44,8 @@ const HerbDetailsPage = () => {
 					{herbData.latin_name}
 					<br />
 					<span className="italic text-xl">
-						{herbData.alt_name} / {herbData.herb_name}
+						{item.alt_name ? `${item.alt_name} / ` : ""}
+						{item.herb_name}
 					</span>
 				</h1>
 

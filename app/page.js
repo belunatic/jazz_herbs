@@ -138,9 +138,12 @@ export default function Home() {
 				<div className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 					<Link href={`/herbs/${item.$id}`}>
 						<h1 className="mb-2 text-2xl cursor-pointer font-bold tracking-tight text-gray-900 dark:text-white">
-							{item.herb_name}
+							{item.latin_name}
 							<br />
-							<span className="italic text-lg">{item.alt_name}</span>
+							<span className="italic text-lg">
+								{item.alt_name ? `${item.alt_name} / ` : ""}
+								{item.herb_name}
+							</span>
 						</h1>
 					</Link>
 
