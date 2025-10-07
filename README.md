@@ -6,9 +6,11 @@ Link to project: [jazz-herb-onrender.com](https://jazz-herbs.onrender.com/)
 
 ## How It's Made
 
-Tech used: HTML, Tailwind CSS, Next.js, Appwrite
+<b>Tech used:</b> HTML, Tailwind CSS, Next.js, Appwrite(BaaS)
+
 This project was developed using Next.js with the App Router for modern routing and component structure. Tailwind CSS powers the design system, enabling rapid styling and responsive layouts. Appwrite handles authentication and database interactions, ensuring secure access and scalable data management.
-Users can:
+
+<b>Users can:</b>
 
 - Add and edit herbal entries
 - Search and filter herbs by name or category
