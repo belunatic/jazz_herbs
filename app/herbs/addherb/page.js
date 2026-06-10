@@ -39,7 +39,7 @@ const AddHerb = () => {
 							</div>
 						</Tooltip>
 					))}
-				</div>
+				</div>,
 			);
 		}
 
@@ -91,7 +91,7 @@ const AddHerb = () => {
 						<label
 							className="block text-text-input text-lg mb-2 font-semibold"
 							htmlFor="latin_name">
-							Name
+							Latin Name
 						</label>
 						<input
 							className="block w-full p-2.5 border-color-text border-size border-border border rounded-box"
@@ -140,7 +140,7 @@ const AddHerb = () => {
 							{renderCheckboxes(
 								"Herbal Actions",
 								"herbal_action",
-								herbalActions
+								herbalActions,
 							)}
 						</div>
 					</div>
@@ -150,7 +150,7 @@ const AddHerb = () => {
 							{renderCheckboxes(
 								"Herbal Energetics",
 								"herbal_energetics",
-								herbalEnergetics
+								herbalEnergetics,
 							)}
 						</div>
 					</div>
@@ -160,7 +160,7 @@ const AddHerb = () => {
 							{renderCheckboxes(
 								"Herbal Constituents",
 								"herbal_constituents",
-								herbalConstituents
+								herbalConstituents,
 							)}
 						</div>
 					</div>
